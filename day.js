@@ -64,7 +64,7 @@ function userData(userName = "Guest User") {
 
 userData(userName);
 
-
+//functions
 const myName = "Gotuu.";
 const myAge = 21;
 function introduction() {
@@ -73,3 +73,33 @@ function introduction() {
 }
 introduction()
 introduction(myName, myAge)
+
+
+// arrow function
+const arrowFun = () => {
+    console.log("____----____");
+    console.log("hello There, this is me");
+};
+const arrowFun1 = () => console.log("hello here,!");
+const arrowFun2 = (name) => `hello there ${name}`;
+const arrowFun3 = (a, b) => a * b;
+
+console.log(arrowFun2("nishan"));
+console.log(arrowFun3(6, 3));
+
+
+
+//desctructing (extrawcting values esaily)
+
+const person = { names: "nishan", ages: 100 };
+const { names, ages } = person;
+console.log(person.names, person.ages);
+
+const animals = ["dog", "cat", "cow"];
+const [frist, second, third] = animals;
+console.log(frist, second, third);
+console.log(animals[2]);
+
+//spread('...') operators
+const moreDetailsPEson = { ...person, address: "laxmimarga" };
+console.log(moreDetailsPEson);
