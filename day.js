@@ -72,4 +72,4 @@ function introduction() {
 
 }
 introduction()
-// introduction(myName, myAge)
+introduction(myName, myAge)
