@@ -67,8 +67,9 @@ userData(userName);
 
 const myName = "Gotuu.";
 const myAge = 21;
-function introduction(myName, myAge) {
+function introduction() {
     console.log(`Hi, My name is ${myName} and I am ${myAge} years old.`);
 
 }
-introduction(myName, myAge)
+introduction()
+// introduction(myName, myAge)
