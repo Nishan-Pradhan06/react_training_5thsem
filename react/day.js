@@ -101,5 +101,9 @@ console.log(frist, second, third);
 console.log(animals[2]);
 
 //spread('...') operators
-const moreDetailsPEson = { ...person, address: "laxmimarga" };
-console.log(moreDetailsPEson);
+const moreDetailsPerson = { ...person, address: "laxmimarga" };
+console.log(moreDetailsPerson);
+
+
+const sayHello = ({...rest}) => `hello ${rest.name}`;
+console.log(sayHello({ name: "nishan" }));
