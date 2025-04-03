@@ -20,7 +20,7 @@ const styles = {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "10px 20px",
-        background: "#333",
+        background: "#2D336B",
         color: "#fff",
     },
     logo: {

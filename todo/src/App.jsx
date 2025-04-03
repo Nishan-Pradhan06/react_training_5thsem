@@ -3,7 +3,7 @@ import Nav from './pages/navigation_bar.jsx'
 const App = () => {
   return (
     <>
-      <Nav />
+      <Nav /> 
       < HomePage />
     </>
   );
