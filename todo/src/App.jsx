@@ -6,11 +6,13 @@ import ReducerHook from './pages/reducerhook.jsx'
 import LoginPage from './pages/login_page.jsx'
 import FacebookProfileForm from './pages/profile_update.jsx'
 import LearnUseEffect from './pages/learn_use_effect.jsx'
+import ECommerceLanding from './pages/e_commerce_landing.jsx'
 const App = () => {
   return (
     <>
       {/* <LoginPage /> */}
-      <LearnUseEffect />
+      <ECommerceLanding />
+      {/* <LearnUseEffect /> */}
       {/* <FacebookProfileForm /> */}
       {/* <Nav />
       <LandingPage />
