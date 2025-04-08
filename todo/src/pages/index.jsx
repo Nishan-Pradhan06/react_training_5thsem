@@ -34,7 +34,7 @@ export default function ProductPage() {
                 </div>
             </nav>
 
-            <section className="product-gri*d">
+            <section className="product-grid">
                 <h2 className="section-title">Explore Our Products</h2>
 
                 <div className="grid-container">
