@@ -10,8 +10,9 @@ import ECommerceLanding from './pages/e_commerce_landing.jsx'
 const App = () => {
   return (
     <>
+      
       {/* <LoginPage /> */}
-      <ECommerceLanding />
+      {/* <ECommerceLanding /> */}
       {/* <LearnUseEffect /> */}
       {/* <FacebookProfileForm /> */}
       {/* <Nav />
