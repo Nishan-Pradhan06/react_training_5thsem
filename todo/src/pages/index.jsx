@@ -15,27 +15,6 @@ export default function ProductPage() {
     }, [])
     return (
         <>
-            <nav className="navbar">
-                <div className="navbar-left">
-                    <Link to={"/"} style={{ textDecoration: 'none' }}>
-                        <div className="logo">OnePiece Shop</div>
-                    </Link>
-                    <div className="location">
-                        <span className="location-icon">📍</span>
-                        <div className="location-text">
-                            <small>Deliver to</small>
-                            <strong>Your Location</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="navbar-right">
-                    <a href="#" className="nav-link">Sign In</a>
-                    <a href="#" className="nav-link">Orders</a>
-                    <a href="#" className="nav-link cart-icon">🛒 Cart</a>
-                </div>
-            </nav>
-
             <section className="product-grid">
                 <h2 className="section-title">Explore Our Products</h2>
 

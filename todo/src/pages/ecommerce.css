@@ -10,8 +10,10 @@ body {
     background-color: #f9f9f9;
     color: #333;
 }
-
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -421,4 +423,118 @@ body {
 
 .checkout-btn:hover {
     background-color: #f08804;
+}
+
+
+.ecom-footer {
+    background-color: #232f3e;
+    color: #fff;
+    padding-top: 40px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ecom-footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.ecom-footer-section {
+    flex: 1 1 200px;
+    margin-bottom: 30px;
+}
+
+.ecom-footer-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #ff9900;
+}
+
+.ecom-footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ecom-footer-section ul li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.ecom-footer-section ul li a {
+    text-decoration: none;
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+.ecom-footer-section ul li a:hover {
+    color: #ff9900;
+}
+
+.ecom-footer-section p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+.ecom-footer-socials li a {
+    color: #ddd;
+}
+
+.ecom-footer-bottom {
+    border-top: 1px solid #444;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+
+
+.notfound-container {
+    height: 60vh;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.notfound-content {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.notfound-title {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+.notfound-message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.notfound-home-button {
+    background-color: #ff9900;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.notfound-home-button:hover {
+    background-color: #e68a00;
 }
