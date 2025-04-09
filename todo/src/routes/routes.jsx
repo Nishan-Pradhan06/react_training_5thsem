@@ -3,6 +3,8 @@ import ECommerceLanding from "../pages/e_commerce_landing";
 import SingleProductPage from "../pages/single_product_page";
 import ProductPage from "../pages";
 import CartPage from "../pages/cart";
+import LoginPage from "../pages/login";
+import RegeisterPage from "../pages/register";
 
 export default function AppRoutes() {
     return (
@@ -25,6 +27,8 @@ export default function AppRoutes() {
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Route>
+            <Route path="login" element={<LoginPage/>} />
+            <Route path="register" element={<RegeisterPage/>} />
 
         </Routes>
 
