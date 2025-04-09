@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router";
 
 export default function SingleProductPage() {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
+    const { productId } = useParams();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const getData = async () => {
-        try {
-            const res = await fetch(`https://fakestoreapi.com/products/${id}`); // <-- use a valid product ID
-            const data = await res.json();
-            if (data) {
-                setProduct(data);
-            }
-        } catch (error) {
-            console.error("Error fetching product:", error);
+
+        const res = await fetch(`https://fakestoreapi.com/products/${productId}`); // <-- use a valid product ID
+        const data = await res.json();
+        if (data) {
+            setProduct(data);
         }
+
     };
 
     useEffect(() => {
@@ -23,7 +26,9 @@ export default function SingleProductPage() {
         <>
             <nav className="navbar">
                 <div className="navbar-left">
-                    <div className="logo">OnePiece Shop</div>
+                    <Link to={"/"} style={{ textDecoration: 'none' }}>
+                        <div className="logo">OnePiece Shop</div>
+                    </Link>
                     <div className="location">
                         <span className="location-icon">📍</span>
                         <div className="location-text">

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "./ecommerce.css";
 import { useEffect, useState } from "react";
 
@@ -17,7 +18,9 @@ export default function ECommerceLanding() {
             {/* Navbar */}
             <nav className="navbar">
                 <div className="navbar-left">
-                    <div className="logo">ShopEase</div>
+                    <Link to={"/"} style={{ textDecoration: 'none' }}>
+                        <div className="logo">OnePiece Shop</div>
+                    </Link>
                     <div className="location">
                         <span className="location-icon">📍</span>
                         <div className="location-text">

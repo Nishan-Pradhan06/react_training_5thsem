@@ -17,7 +17,9 @@ export default function ProductPage() {
         <>
             <nav className="navbar">
                 <div className="navbar-left">
-                    <div className="logo">ShopEase</div>
+                    <Link to={"/"} style={{ textDecoration: 'none' }}>
+                        <div className="logo">OnePiece Shop</div>
+                    </Link>
                     <div className="location">
                         <span className="location-icon">📍</span>
                         <div className="location-text">
