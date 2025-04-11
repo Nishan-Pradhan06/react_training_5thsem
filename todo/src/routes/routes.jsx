@@ -16,7 +16,7 @@ export default function AppRoutes() {
                     <Outlet />
                     <Footer />
                 </>
-            }>
+             }>
 
                 <Route index element={<ECommerceLanding />} />
                 <Route path="product">
