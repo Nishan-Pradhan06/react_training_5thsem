@@ -8,10 +8,14 @@ import ShopPage from '../pages/ShopPage'
 import CategoriesPage from '../pages/CategoriesPage'
 import CartPage from '../pages/CartPage'
 import ProductPageGrid from '../pages/ProductPage'
+import RegisterFormPage from '../pages/auth/SignUpPage'
+import LoginPage from '../pages/auth/LoginPage'
 
 export default function AppRoutes() {
     return (
         <Routes>
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterFormPage />} />
             <Route path='/' element={
                 <>
                     <NavBar />
@@ -30,6 +34,7 @@ export default function AppRoutes() {
                 < Route path='cart' element={<CartPage />} />
                 <Route path='*' element={<NotFound />} />
             </Route>
+
         </Routes>
 
     )
