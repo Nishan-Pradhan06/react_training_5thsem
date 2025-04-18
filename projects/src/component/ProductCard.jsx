@@ -39,7 +39,7 @@ export default function ProductCardGrid() {
             {/* Product Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {products.slice(0, 8).map((product) => (
-                    <Link to={`/product/${product.id}`} key={product.id} className="no-underline">
+                    <Link to={`/products/${product.id}`} key={product.id} className="no-underline">
                         <div className="w-full bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4 flex flex-col gap-4 h-full">
                             {/* Image */}
                             <div className="h-64 flex justify-center items-center overflow-hidden rounded-xl bg-gray-100">

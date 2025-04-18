@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cache } from 'react';
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
@@ -67,12 +67,15 @@ export default function ProductPageGrid() {
                 {/* Product Grid */}
                 <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product) => (
-                        <Link to={`/product/${product.id}`} key={product.id} className="no-underline">
+                        <Link to={`/products/${product.id}`} key={product.id} viewTransition className="no-underline">
                             <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4 flex flex-col gap-4 h-full">
                                 <div className="h-64 flex justify-center items-center overflow-hidden rounded-xl bg-gray-100">
                                     <img
                                         src={product.image}
                                         alt={product.title}
+                                        style={{
+                                            viewTimelineName: `product-${product.id}`
+                                        }}
                                         className="object-contain h-full"
                                     />
                                 </div>
