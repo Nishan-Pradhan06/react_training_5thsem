@@ -8,7 +8,7 @@ export default function LandingPage() {
             <div className='HeroSection'>
                 <div className='container'>
                     <HeroSection />
-                    <ProductCard/>
+                    <ProductCard />
                 </div>
             </div>
         </>

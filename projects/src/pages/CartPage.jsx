@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 export default function CartPage() {
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-            price: 650,
-            quantity: 2,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-        },
-        {
-            id: 2,
-            name: "Mens Casual Premium Slim Fit T-Shirts",
-            price: 450,
-            quantity: 1,
-            image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-        },
-    ]);
+    const [cartItems, setCartItems] = useState([]);
+    const getData = async () => {
+        try {
+            const res = await fetch("https://fakestoreapi.com/carts");
+            const data = await res.json();
+            const products = await fetch("https://fakestoreapi.com/products");
+            const productsData = await products.json();
+            const cartData = data.map((cart) => {
+                return cart.products.map((product) => {
+                    const productDetails = productsData.find((p) => p.id === product.productId);
+                    return {
+                        id: product.productId,
+                        name: productDetails.title,
+                        image: productDetails.image,
+                        price: productDetails.price,
+                        quantity: product.quantity,
+                    };
+                });
+            });
+            setCartItems(cartData);
+        } catch (error) {
+            console.error("Failed to fetch cart items:", error);
+        }
+    };
+    useEffect(() => {
+        getData();
+    }, []);
 
     const updateQuantity = (id, change) => {
         setCartItems((prevItems) =>

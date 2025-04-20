@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 
 export default function LoginPage() {
     const navigate = useNavigate();
+    // const hasToken = localStorage.token;
+    useCheckAuth();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -62,3 +65,20 @@ export default function LoginPage() {
         </div>
     );
 }
+
+
+
+const useCheckAuth = () => {
+    const navigate = useNavigate();
+    const hasToken = localStorage.getItem("token");
+
+    useState(() => {
+        if (!hasToken) {
+            navigate("/login");
+        }
+        else {
+            navigate("/")
+        }
+    }, [hasToken, navigate]
+    );
+};
