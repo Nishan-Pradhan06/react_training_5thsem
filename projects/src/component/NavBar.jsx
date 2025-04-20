@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router'
 import { FaRegUserCircle } from "react-icons/fa";
 import { useCheckAuth } from '../pages/auth/LoginPage';
@@ -29,6 +29,19 @@ export default function NavBar() {
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
+
+    const [user, getUser] = useState();
+
+    const getUserData = async () => {
+        const res = await fetch(`https://fakestoreapi.com/users/1`);
+        const data = await res.json();
+        if (data) {
+            getUser(data);
+        }
+    };
+    useEffect(() => {
+        getUserData();
+    }, []);
 
 
     return (
@@ -63,7 +76,7 @@ export default function NavBar() {
                 <div className="relative">
                     <div className="action-section cursor-pointer flex items-center h-3.5" onClick={toggleDropdown}>
                         <button className="text-red-500 hover:text-red-700 cursor-pointer">
-                            Welcome, Nishan
+                            Welcome, <span className='font-bold'>{user?.username }</span>
                         </button>
                     </div>
 
@@ -71,14 +84,14 @@ export default function NavBar() {
                         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
                             <ul className="list-none p-2">
                                 <li>
-                                    <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                    <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                                         Profile
                                     </Link>
                                 </li>
 
                                 <li>
                                     <button
-                                        className="block px-4 py-2 text-red-500 hover:bg-red-100 w-full text-left"
+                                        className="block px-4 py-2 text-red-500 hover:bg-red-100 w-full text-left cursor-pointer"
                                         onClick={handleLogout}
                                     >
                                         Logout
@@ -88,15 +101,9 @@ export default function NavBar() {
                         </div>
                     )}
                 </div>
-                // <Link to={"/login"}>
-                //     <div className='action-section cursor-pointer flex items-center h-3.5'>
-                //         <button className='text-red-500 hover:text-red-700 cursor-pointer' onClick={handleLogout}>
-                //             Logout
-                //         </button>
-                //     </div>
-                // </Link>
             ) :
                 (
+
                     <Link to={"/login"}>
                         <div className='action-section cursor-pointer flex items-center h-3.5'>
                             <FaRegUserCircle size={24} />
