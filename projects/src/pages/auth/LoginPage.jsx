@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    // const hasToken = localStorage.token;
-    useCheckAuth();
+    // const hasToken = localStorage.getItem("token");
+    useCheckAuth(true);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -12,7 +12,7 @@ export default function LoginPage() {
         const password = formData.get("password");
         console.log("Username:", username);
         console.log("Password:", password);
-        e.target.reset();
+
         const credentials = { username, password };
         try {
             const res = await fetch("https://fakestoreapi.com/auth/login", {
@@ -26,11 +26,11 @@ export default function LoginPage() {
                 localStorage.setItem("token", data.token);
                 navigate("/");
             }
+            e.target.reset();
         } catch (error) {
             console.error(error);
+            throw new Error("Login failed. Please try again.");
         }
-
-
     }
 
     return (
@@ -68,17 +68,42 @@ export default function LoginPage() {
 
 
 
-const useCheckAuth = () => {
-    const navigate = useNavigate();
-    const hasToken = localStorage.getItem("token");
+// const useCheckAuth = () => {
+//     const navigate = useNavigate();
+//     const hasToken = localStorage.getItem("token");
 
-    useState(() => {
+//     useState(() => {
+//         if (!hasToken) {
+//             navigate("/login");
+//         }
+//         else {
+//             navigate("/")
+//         }
+//     }, [hasToken, navigate]
+//     );
+// };
+
+export const useCheckAuth = (navigateTo = false) => {
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const hasToken = localStorage.getItem("token");
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+    };
+    useEffect(() => {
         if (!hasToken) {
-            navigate("/login");
-        }
-        else {
-            navigate("/")
-        }
-    }, [hasToken, navigate]
-    );
-};
+            if (navigateTo) {
+                navigate("/login");
+            }
+            setIsLoggedIn(false);
+        } else {
+            if (navigateTo) {
+                navigate("/");
+            }
+            setIsLoggedIn(true);
+        };
+    }, [hasToken, navigate, navigateTo]);
+
+    return { isLoggedIn, handleLogout };
+}

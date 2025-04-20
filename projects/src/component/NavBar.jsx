@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router'
 import { FaRegUserCircle } from "react-icons/fa";
+import { useCheckAuth } from '../pages/auth/LoginPage';
 
 const links = [
     {
@@ -21,7 +22,9 @@ const links = [
     },
 ]
 
-const NavBar = () => {
+export default function NavBar() {
+    const { handleLogout, isLoggedIn } = useCheckAuth();
+
     return (
         <div className="main-container flex justify-between items-center px-15 py-1 bg-white shadow-md">
             <Link to="/">
@@ -50,13 +53,24 @@ const NavBar = () => {
                 </ul>
 
             </div>
+            {isLoggedIn ? (
+                <Link to={"/login"}>
+                    <div className='action-section cursor-pointer flex items-center h-3.5'>
+                        <button className='text-red-500 hover:text-red-700 cursor-pointer' onClick={handleLogout}>
+                            Logout
+                        </button>
+                    </div>
+                </Link>
+            ) :
+                (
+                    <Link to={"/login"}>
+                        <div className='action-section cursor-pointer flex items-center h-3.5'>
+                            <FaRegUserCircle size={24} />
+                        </div>
+                    </Link>
 
-
-            <div className='action-section cursor-pointer flex items-center h-3.5'>
-                <FaRegUserCircle size={24} />
-            </div>
+                )
+            }
         </div>
     )
 }
-
-export default NavBar

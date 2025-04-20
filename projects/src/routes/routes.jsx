@@ -9,7 +9,7 @@ import CategoriesPage from '../pages/CategoriesPage'
 import CartPage from '../pages/CartPage'
 import ProductPageGrid from '../pages/ProductPage'
 import RegisterFormPage from '../pages/auth/SignUpPage'
-import LoginPage from '../pages/auth/LoginPage'
+import LoginPage, { useCheckAuth } from '../pages/auth/LoginPage'
 import SingleProductPage from '../pages/SingleProductPage'
 
 export default function AppRoutes() {
