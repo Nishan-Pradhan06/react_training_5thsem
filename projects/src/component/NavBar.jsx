@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router'
 import { FaRegUserCircle } from "react-icons/fa";
 import { useCheckAuth } from '../pages/auth/LoginPage';
@@ -24,6 +24,12 @@ const links = [
 
 export default function NavBar() {
     const { handleLogout, isLoggedIn } = useCheckAuth();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
 
     return (
         <div className="main-container flex justify-between items-center px-15 py-1 bg-white shadow-md">
@@ -54,13 +60,41 @@ export default function NavBar() {
 
             </div>
             {isLoggedIn ? (
-                <Link to={"/login"}>
-                    <div className='action-section cursor-pointer flex items-center h-3.5'>
-                        <button className='text-red-500 hover:text-red-700 cursor-pointer' onClick={handleLogout}>
-                            Logout
+                <div className="relative">
+                    <div className="action-section cursor-pointer flex items-center h-3.5" onClick={toggleDropdown}>
+                        <button className="text-red-500 hover:text-red-700 cursor-pointer">
+                            Welcome, Nishan
                         </button>
                     </div>
-                </Link>
+
+                    {isOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
+                            <ul className="list-none p-2">
+                                <li>
+                                    <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                        Profile
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <button
+                                        className="block px-4 py-2 text-red-500 hover:bg-red-100 w-full text-left"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
+                </div>
+                // <Link to={"/login"}>
+                //     <div className='action-section cursor-pointer flex items-center h-3.5'>
+                //         <button className='text-red-500 hover:text-red-700 cursor-pointer' onClick={handleLogout}>
+                //             Logout
+                //         </button>
+                //     </div>
+                // </Link>
             ) :
                 (
                     <Link to={"/login"}>

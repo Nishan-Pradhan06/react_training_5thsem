@@ -7,7 +7,9 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
         {/* Brand Info */}
         <div>
-          <h2 className="text-2xl font-bold text-white mb-2">AeroXpress</h2>
+
+          {/* <img className="mix-blend-color-burn hidden dark:block h-18 brightness-200 " src="https://www.creativefabrica.com/wp-content/uploads/2022/01/08/goat-logo-Graphics-23166794-1-1-580x363.png" alt="logo" /> */}
+          <img className="mix-blend-color-burn dark:hidden h-18 brightness-200 " src="assets/logo_white.webp" alt="logo" />
           <p className="text-sm text-gray-400">
             Your one-stop shop for drones & accessories. Fast delivery. Quality guaranteed.
           </p>
