@@ -1,4 +1,4 @@
-import React, { cache } from 'react';
+import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
