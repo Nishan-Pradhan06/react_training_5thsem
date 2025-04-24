@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 
-export default function ProductPageGrid() {
+export default function ProductPage() {
     const [products, setProducts] = useState([]);
 
     const getData = async () => {

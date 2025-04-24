@@ -16,19 +16,19 @@ export default function AppRoutes() {
                     <Outlet />
                     <Footer />
                 </>
-             }>
+            }>
 
                 <Route index element={<ECommerceLanding />} />
                 <Route path="product">
                     <Route element={<ProductPage />} index />
                     <Route path=":productId" element={<SingleProductPage />} />
-                    <Route path="cart" element={<CartPage />} />
 
                 </Route>
-                <Route path="*" element={<NotFound />} />
+                <Route path="cart" element={<CartPage />} />
             </Route>
-            <Route path="login" element={<LoginPage/>} />
-            <Route path="register" element={<RegeisterPage/>} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegeisterPage />} />
+            <Route path="*" element={<NotFound />} />
 
         </Routes>
 

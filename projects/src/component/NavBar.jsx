@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router'
 import { FaRegUserCircle } from "react-icons/fa";
 import { useCheckAuth } from '../pages/auth/LoginPage';
+import { useGetDecodedToken } from '../Hook/useGetDecodedToken';
 
 const links = [
     {
@@ -9,8 +10,8 @@ const links = [
         name: "Home"
     },
     {
-        path: "/shop",
-        name: "Shop"
+        path: "/products",
+        name: "Products"
     },
     {
         path: "/categories",
@@ -24,24 +25,13 @@ const links = [
 
 export default function NavBar() {
     const { handleLogout, isLoggedIn } = useCheckAuth();
+    const { username } = useGetDecodedToken()
     const [isOpen, setIsOpen] = useState(false);
+
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-
-    const [user, getUser] = useState();
-
-    const getUserData = async () => {
-        const res = await fetch(`https://fakestoreapi.com/users/1`);
-        const data = await res.json();
-        if (data) {
-            getUser(data);
-        }
-    };
-    useEffect(() => {
-        getUserData();
-    }, []);
 
 
     return (
@@ -76,7 +66,7 @@ export default function NavBar() {
                 <div className="relative">
                     <div className="action-section cursor-pointer flex items-center h-3.5" onClick={toggleDropdown}>
                         <button className="text-red-500 hover:text-red-700 cursor-pointer">
-                            Welcome, <span className='font-bold'>{user?.username }</span>
+                            Welcome, <span className='font-bold'>{username}</span>
                         </button>
                     </div>
 

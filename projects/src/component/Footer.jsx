@@ -8,10 +8,10 @@ export default function Footer() {
         {/* Brand Info */}
         <div>
 
-          {/* <img className="mix-blend-color-burn hidden dark:block h-18 brightness-200 " src="https://www.creativefabrica.com/wp-content/uploads/2022/01/08/goat-logo-Graphics-23166794-1-1-580x363.png" alt="logo" /> */}
-          <img className="mix-blend-color-burn dark:hidden h-18 brightness-200 " src="assets/logo_white.webp" alt="logo" />
+          <img className="mix-blend-color-burn hidden dark:block h-18 brightness-200 " src="https://www.creativefabrica.com/wp-content/uploads/2022/01/08/goat-logo-Graphics-23166794-1-1-580x363.png" alt="logo" />
+          {/* <img className="mix-blend-color-burn dark:hidden h-18 brightness-200 " src="assets/logo_white.webp" alt="logo" /> */}
           <p className="text-sm text-gray-400">
-            Your one-stop shop for drones & accessories. Fast delivery. Quality guaranteed.
+            Your one-stop shop for accessories. Fast delivery. Quality guaranteed.
           </p>
         </div>
 

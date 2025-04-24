@@ -1,15 +1,15 @@
 import React from 'react'
-import { Routes, Route, Outlet } from 'react-router'
-import LandingPage from '../pages/landing_page'
+import { Outlet, Route, Routes } from 'react-router'
+import Footer from '../component/Footer'
 import NavBar from '../component/NavBar'
 import NotFound from '../component/not_found'
-import Footer from '../component/Footer'
-import ShopPage from '../pages/ShopPage'
-import CategoriesPage from '../pages/CategoriesPage'
-import CartPage from '../pages/CartPage'
-import ProductPageGrid from '../pages/ProductPage'
+import LoginPage from '../pages/auth/LoginPage'
 import RegisterFormPage from '../pages/auth/SignUpPage'
-import LoginPage, { useCheckAuth } from '../pages/auth/LoginPage'
+import CartPage from '../pages/CartPage'
+import CategoriesPage from '../pages/CategoriesPage'
+import LandingPage from '../pages/landing_page'
+import ProductPage from '../pages/ProductPage'
+import UserProfile from '../pages/ProfilePage'
 import SingleProductPage from '../pages/SingleProductPage'
 
 export default function AppRoutes() {
@@ -25,13 +25,15 @@ export default function AppRoutes() {
                 </>
             } >
                 < Route index element={<LandingPage />} />
-                < Route path='shop' element={<ShopPage />} />
+                < Route path='shop' element={<ProductPage />} />
                 <Route path="products">
-                    <Route element={<ProductPageGrid />} index />
+                    <Route element={<ProductPage />} index />
                     <Route path=":productId" element={<SingleProductPage />} />
                 </Route>
                 < Route path='categories' element={<CategoriesPage />} />
                 < Route path='cart' element={<CartPage />} />
+                <Route path="profile" element={<UserProfile />} />
+
                 <Route path='*' element={<NotFound />} />
             </Route>
 
