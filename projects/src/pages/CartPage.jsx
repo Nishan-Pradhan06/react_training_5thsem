@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { FaCircle, FaTrash } from "react-icons/fa";
 import { useGetDecodedToken } from "../Hook/useGetDecodedToken";
+import { toast } from "react-toastify";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -86,19 +87,20 @@ function CartProduct({ cProduct, cartItems, setCartItems, cartId }) {
   const [isDeleting, setIDeleting] = useState(false);
 
   const handleDeleteCartItem = (cartId, productId) => {
-    const removeItem = cartItems.map((cartItem) => {
-      if (cartItem.id === cartId) {
-        return {
-          ...cartItem,
-          products: cartItem.products.filter(
-            (product) => product.productId !== productId
-          ),
-        };
-      }
-      return cartItem;
-    })
-       // Remove the cart if it has no products left
-    .filter((cartItem) => cartItem.products.length > 0);
+    const removeItem = cartItems
+      .map((cartItem) => {
+        if (cartItem.id === cartId) {
+          return {
+            ...cartItem,
+            products: cartItem.products.filter(
+              (product) => product.productId !== productId
+            ),
+          };
+        }
+        return cartItem;
+      })
+      // Remove the cart if it has no products left
+      .filter((cartItem) => cartItem.products.length > 0);
     setCartItems(removeItem);
   };
 
@@ -165,6 +167,7 @@ const DeleteCartItem = ({
     });
     if (res.ok) {
       handleDeleteCartItem(cartId, productId);
+      toast.success(`Products has been removed from your cart!`);
     } else {
       setIDeleting(false);
     }

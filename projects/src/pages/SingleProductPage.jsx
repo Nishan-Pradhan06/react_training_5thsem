@@ -2,22 +2,29 @@ import React, { useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router";
 import { useGetDecodedToken } from "../Hook/useGetDecodedToken";
+import { toast } from "react-toastify";
 
 export default function SingleProductPage() {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
+  const [quantity, setQuantity] = useState(1);
+
+  // Fetch product details based on productId
   const getData = async () => {
-    const res = await fetch(`https://fakestoreapi.com/products/${productId}`); // <-- use a valid product ID
-    const data = await res.json();
-    if (data) {
+    try {
+      const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
+      if (!res.ok) throw new Error("Failed to fetch product");
+      const data = await res.json();
       setProduct(data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      toast.error("Failed to load product details. Please try again.");
     }
   };
 
   useEffect(() => {
     getData();
-  }, []);
-  const [quantity, setQuantity] = useState(1);
+  }, [productId]);
 
   const increaseQty = () => setQuantity(quantity + 1);
   const decreaseQty = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
@@ -27,12 +34,9 @@ export default function SingleProductPage() {
       {/* Product Image */}
       <div className="flex justify-center">
         <img
-          src={product?.image} // Replace with your actual image path
-          alt="Robust Fish Oil"
+          src={product?.image}
+          alt={product?.title || "Product"}
           className="max-h-[450px] object-contain"
-          style={{
-            viewTimelineName: `product-${product?.id}`,
-          }}
         />
       </div>
 
@@ -41,7 +45,7 @@ export default function SingleProductPage() {
         <h1 className="text-2xl md:text-3xl font-semibold text-gray-800">
           {product?.title}
         </h1>
-        <p className="text-xl font-bold text-green-600">{product?.price}</p>
+        <p className="text-xl font-bold text-green-600">Rs. {product?.price}</p>
         <p className="text-sm text-gray-500">
           Shipping is calculated at checkout
         </p>
@@ -61,7 +65,7 @@ export default function SingleProductPage() {
           >
             +
           </button>
-          <AddToCartButton product={product} />
+          <AddToCartButton product={product} quantity={quantity} />
         </div>
 
         {/* Description */}
@@ -79,34 +83,52 @@ export default function SingleProductPage() {
   );
 }
 
-const AddToCartButton = ({ product }) => {
+const AddToCartButton = ({ product, quantity }) => {
   const { userId } = useGetDecodedToken();
   const nav = useNavigate();
-  console.log(userId);
-  console.log(product);
 
-  const handlAddToCart = async () => {
-    const res = await fetch(`https://fakestoreapi.com/carts`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: userId,
-        products: [product],
-      }),
-    }); // <-- use a valid product ID
-    const data = await res.json();
-    if (data?.id) {
-      nav("/cart");
-    } else {
-      window.alert("unable to add to cart");
+  const handleAddToCart = async () => {
+    if (!userId) {
+      toast.error("You must be logged in to add items to the cart!");
+      return;
+    }
+
+    if (!product) {
+      toast.error("Product details are not available!");
+      return;
+    }
+
+    try {
+      const res = await fetch("https://fakestoreapi.com/carts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userId,
+          products: [{ id: product.id, quantity }],
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to add product to cart");
+
+      const data = await res.json();
+      if (data?.id) {
+        toast.success(`${product.title} has been added to your cart!`);
+        nav("/cart");
+      } else {
+        toast.error("Unable to add the product to the cart.");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast.error("An error occurred while adding the product to the cart.");
     }
   };
+
   return (
     <button
-      onClick={handlAddToCart}
-      className="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700 transition-all font-semibold ml-4 cursor-pointer"
+      onClick={handleAddToCart}
+      className="bg-gray-900 text-white px-6 py-2 rounded hover:bg-gray-700 transition-all font-semibold ml-4 cursor-pointer"
     >
       ADD TO CART
     </button>
