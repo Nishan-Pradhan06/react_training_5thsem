@@ -11,6 +11,7 @@ import ProductPage from '../pages/ProductPage'
 import UserProfile from '../pages/ProfilePage'
 import SingleProductPage from '../pages/SingleProductPage'
 import SearchProducts from '../pages/SearchProduct'
+import CheckoutPage from '../pages/CheckOutPage'
 
 export default function AppRoutes() {
     return (
@@ -36,6 +37,7 @@ export default function AppRoutes() {
           <Route path="search" element={<SearchProducts />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="profile" element={<UserProfile />} />
+          <Route path="checkout" element={<CheckoutPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>

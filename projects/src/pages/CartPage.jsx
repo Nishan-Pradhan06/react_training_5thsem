@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { FaCircle, FaTrash } from "react-icons/fa";
 import { useGetDecodedToken } from "../Hook/useGetDecodedToken";
 import { toast } from "react-toastify";
+import { Link } from "react-router";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -72,9 +73,11 @@ export default function CartPage() {
               <span>Total</span>
               <span>₹ 1000</span>
             </div>
-            <button className="w-full mt-6 bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition cursor-pointer">
-              Proceed to Checkout
-            </button>
+            <Link to="">
+              <button className="w-full mt-6 bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition cursor-pointer">
+                Proceed to Checkout
+              </button>
+            </Link>
           </div>
         </div>
       )}
@@ -130,7 +133,7 @@ function CartProduct({ cProduct, cartItems, setCartItems, cartId }) {
           <h2 className="font-semibold text-lg line-clamp-2 max-w-xs">
             {product?.title}
           </h2>
-          <p className="text-gray-600">₹ {product?.price}</p>
+          <p className="text-gray-600">Rs. {product?.price}</p>
           <div className="flex items-center mt-2 gap-2">
             <button className="bg-gray-200 px-2 rounded hover:bg-gray-300 cursor-pointer">
               -
